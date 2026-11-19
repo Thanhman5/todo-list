@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+android/build/
+desktop/release/
+dist/
+*.apk
+*.exe
+
+# OS / editor noise
+.DS_Store
+*.idsig
