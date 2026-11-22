@@ -1,8 +1,9 @@
-# Checklist Công Việc Lặp Lại
+# Task Manager
 
 Ứng dụng quản lý công việc lặp lại (hằng ngày / ngày làm việc / hằng tuần / hằng tháng):
 trạng thái Chưa làm – Đang làm – Hoàn thành, tiến độ % theo từng lần làm,
-ghi chú riêng cho từng lần, lịch sử thay đổi và thống kê.
+ghi chú riêng cho từng lần, lịch sử thay đổi và thống kê. Kèm ghi chú, thói quen
+(đo được và cai), đếm giờ tập trung và sao lưu tự động trên máy.
 
 ## Tải bản cài đặt
 
@@ -27,7 +28,7 @@ bộ nhớ trong của app), không gửi đi máy chủ, không đồng bộ gi
 Lần mở đầu tiên, ứng dụng yêu cầu tự đặt một mã khoá — mã này chỉ để chống
 người khác mở máy xem trộm, không phải tài khoản trực tuyến.
 
-Có xuất/nhập dữ liệu JSON trong mục "Thùng Rác & Dữ Liệu" của ứng dụng
+Có xuất/nhập dữ liệu JSON trong mục "Dữ Liệu & Hệ Thống" của ứng dụng
 để sao lưu hoặc chuyển dữ liệu sang máy khác.
 
 ## Cấu trúc repo

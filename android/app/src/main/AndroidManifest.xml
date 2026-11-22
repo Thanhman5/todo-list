@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.thanhman5.todolist"
-    android:versionCode="1"
-    android:versionName="2.0">
+    android:versionCode="2"
+    android:versionName="2.13">
 
     <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="35" />
 
     <application
-        android:label="Checklist Công Việc Lặp Lại"
+        android:label="Task Manager"
         android:icon="@drawable/ic_launcher"
         android:theme="@android:style/Theme.Material.Light.NoActionBar"
         android:hardwareAccelerated="true"
