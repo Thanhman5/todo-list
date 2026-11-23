@@ -60,7 +60,7 @@
       .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
       .btn.danger{background:var(--red);border-color:var(--red);color:#fff}
       .btn.ghost{border-color:transparent;background:transparent;color:var(--ink2)}
-      .btn.small{min-height:38px;padding:6px 12px;font-size:13.5px}
+      .btn.small{min-height:44px;padding:6px 12px;font-size:13.5px}
       .btn.block{width:100%}
       .btn[disabled]{opacity:.55;cursor:default}
       .gate-card .btn.primary{width:100%;margin-top:20px}
@@ -105,7 +105,9 @@
       }
 
       /* error banner */
-      #errbanner{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:180;width:min(560px,calc(100vw - 24px));display:none}
+      #topstack{position:fixed;top:12px;left:0;right:0;z-index:180;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
+      #topstack>*{pointer-events:auto}
+      #errbanner{width:min(560px,calc(100vw - 24px));display:none}
       #errbanner.on{display:block}
       .err-card{background:var(--red-soft);border:1px solid var(--red);color:var(--ink);border-radius:14px;padding:13px 16px;box-shadow:var(--shadow);font-size:14px}
       .err-card .rowb{display:flex;gap:6px;margin-top:9px}
@@ -139,9 +141,13 @@
       .task{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start}
       .task.done{opacity:.62}
       .task.skipped{opacity:.5}
-      .task .check{flex:0 0 auto;width:30px;height:30px;border-radius:50%;border:2px solid var(--ink3);background:transparent;display:flex;align-items:center;justify-content:center;margin-top:2px;color:transparent;padding:0}
-      .task .check.doing{border-color:var(--amber);color:var(--amber)}
-      .task .check.done{border-color:var(--green);background:var(--green);color:#fff}
+      .task .check{flex:0 0 auto;width:44px;height:44px;border:0;background:transparent;display:flex;align-items:center;justify-content:center;margin-top:-5px;color:transparent;padding:0;position:relative}
+      .task .check::before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;border:2px solid var(--ink3);box-sizing:border-box}
+      .task .check svg,.task .check span{position:relative;z-index:1}
+      .task .check.doing{color:var(--amber)}
+      .task .check.doing::before{border-color:var(--amber)}
+      .task .check.done{color:#fff}
+      .task .check.done::before{border-color:var(--green);background:var(--green)}
       .task .body{flex:1;min-width:0;cursor:pointer}
       .task .title{font-weight:600;font-size:15.5px;word-break:break-word;display:flex;align-items:center;gap:8px}
       .task.done .title{text-decoration:line-through}
@@ -167,8 +173,8 @@
       .task .prog b{font-size:13px;min-width:38px;text-align:right}
       .steps-mini{margin-top:6px;font-size:12.5px;color:var(--ink3)}
       .countctl{display:inline-flex;align-items:center;gap:2px;background:var(--surface2);border-radius:99px;padding:2px;margin-top:8px}
-      .countctl button{width:32px;height:32px;border-radius:50%;border:0;background:var(--surface);color:var(--ink);font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center}
-      .countctl .cv{min-width:86px;text-align:center;font-size:13px;font-weight:700}
+      .countctl button{width:40px;height:40px;border-radius:50%;border:0;background:var(--surface);color:var(--ink);font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center}
+      .countctl .cv{min-width:74px;text-align:center;font-size:13px;font-weight:700}
       .countctl .cv small{display:block;font-weight:500;color:var(--ink2);font-size:11px}
       .empty{background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius);padding:26px 18px;text-align:center;color:var(--ink2)}
       .empty b{color:var(--ink);display:block;font-size:16px;margin-bottom:4px}
@@ -185,14 +191,14 @@
       .show-done{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;cursor:pointer;min-height:38px}
       .show-done input{width:19px;height:19px;accent-color:var(--accent)}
       .fp-note{font-size:12.5px;color:var(--ink3)}
-      .series-chip{display:inline-flex;align-items:center;gap:6px;background:var(--accent-soft);border-radius:99px;padding:4px 6px 4px 12px;font-size:13px;font-weight:600}
-      .series-chip button{border:0;background:transparent;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink2)}
+      .series-chip{display:inline-flex;align-items:center;gap:6px;background:var(--accent-soft);border-radius:99px;padding:0 2px 0 12px;min-height:40px;font-size:13px;font-weight:600}
+      .series-chip button{border:0;background:transparent;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink2)}
       .saveview-form{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
       .saveview-form input{flex:1;min-width:180px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);min-height:44px}
       .saved-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-      .saved-chip{display:inline-flex;align-items:center;gap:4px;background:var(--surface2);border-radius:99px;padding:4px 6px 4px 12px;font-size:13px;font-weight:600}
-      .saved-chip>button:first-child{border:0;background:transparent;font:inherit;color:inherit;padding:2px}
-      .saved-chip .del{border:0;background:transparent;width:26px;height:26px;border-radius:50%;color:var(--ink2);display:flex;align-items:center;justify-content:center}
+      .saved-chip{display:inline-flex;align-items:center;gap:4px;background:var(--surface2);border-radius:99px;padding:0 2px 0 12px;min-height:40px;font-size:13px;font-weight:600}
+      .saved-chip>button:first-child{border:0;background:transparent;font:inherit;color:inherit;padding:2px;min-height:40px;display:inline-flex;align-items:center}
+      .saved-chip .del{border:0;background:transparent;width:40px;height:40px;border-radius:50%;color:var(--ink2);display:flex;align-items:center;justify-content:center}
       .filterbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
       .filterbar input[type=search],.filterbar select{padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);min-height:44px;font-size:14px}
       .filterbar input[type=search]{flex:1;min-width:160px}
@@ -219,15 +225,32 @@
       .cal-cell .more{font-size:11px;color:var(--ink3)}
 
       /* kanban */
-      .kanban{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:12px;align-items:start}
-      .kcol{background:var(--surface2);border-radius:var(--radius);padding:12px;min-height:110px}
+      .kanban{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:12px;align-items:stretch}
+      .kcol{background:var(--surface2);border-radius:var(--radius);padding:12px;min-height:110px;display:flex;flex-direction:column;transition:box-shadow .15s ease,background .15s ease}
       .kcol h3{margin:0 0 10px;font-size:14px;display:flex;justify-content:space-between}
       .kcol.col-overdue h3{color:var(--red)}
+      .kcol.drop-target{box-shadow:0 0 0 2px var(--accent);background:var(--accent-soft)}
       .kcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px}
+      .kcard.kdraggable{cursor:grab;-webkit-touch-callout:none}
+      .kcard.drag-source{opacity:.45}
       .kcard .t{font-weight:600;font-size:14.5px;cursor:pointer;display:flex;gap:7px;align-items:flex-start}
-      .kcard .m{font-size:12px;color:var(--ink2);margin-top:3px}
+      .kcard .t .kt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere;min-width:0}
+      .kcard .m{font-size:12px;color:var(--ink2);margin-top:3px;overflow-wrap:anywhere}
       .kcard .rowbtns{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
-      .kcard .rowbtns .btn{min-height:34px;padding:4px 10px;font-size:12.5px}
+      .kcard .rowbtns .btn{min-height:40px;padding:6px 10px;font-size:12.5px}
+      .kdrag-ghost{position:fixed;z-index:200;pointer-events:none;border:1px solid var(--accent);border-radius:12px;background:var(--surface);box-shadow:var(--shadow);padding:10px 12px;font-size:14px;font-weight:700;line-height:1.3;color:var(--ink);overflow:hidden;overflow-wrap:anywhere;opacity:.96;transform:translate(-50%,-50%) scale(1.03)}
+      body.kdragging{cursor:grabbing;user-select:none;-webkit-user-select:none}
+
+      /* cửa sổ thời gian Kanban (v2.16) */
+      .kbwin{margin-bottom:14px}
+      .kbwin-opts{display:flex;flex-wrap:wrap;gap:3px;padding:3px;border:1px solid var(--line);border-radius:11px;background:var(--surface);max-width:520px}
+      .kbwin-opts button{flex:1 1 auto;min-height:40px;padding:5px 10px;border:0;border-radius:8px;background:transparent;color:var(--ink2);font-size:13px;font-weight:700;white-space:nowrap}
+      .kbwin-opts button:hover{color:var(--ink)}
+      .kbwin-opts button.active{background:var(--ink);color:var(--bg)}
+      .kbwin-custom{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+      .kbwin-custom label{flex:1 1 150px;max-width:220px;min-width:0;font-size:12px;font-weight:700;color:var(--ink2)}
+      .kbwin-custom input{display:block;width:100%;margin-top:4px;min-height:44px;padding:8px 11px;border:1px solid var(--line);border-radius:11px;background:var(--surface);color:var(--ink);font-weight:600;font-size:14px}
+      .kbwin-err{margin:8px 2px 0;color:var(--red);font-size:13px;font-weight:600}
 
       /* cards generic */
       .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
@@ -343,9 +366,12 @@
       .step-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
       .step-row .st{flex:1;min-width:0}
       .step-row .st.done{text-decoration:line-through;color:var(--ink3)}
-      .steptoggle{width:34px;height:34px;border-radius:9px;border:1.5px solid var(--ink3);background:transparent;flex:0 0 auto;display:flex;align-items:center;justify-content:center;color:transparent;padding:0}
-      .steptoggle.done{background:var(--green);border-color:var(--green);color:#fff}
-      .step-note{margin:2px 0 8px 44px}
+      .steptoggle{width:44px;height:44px;border:0;background:transparent;flex:0 0 auto;display:flex;align-items:center;justify-content:center;color:transparent;padding:0;position:relative}
+      .steptoggle::before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:9px;border:1.5px solid var(--ink3);box-sizing:border-box}
+      .steptoggle svg{position:relative;z-index:1}
+      .steptoggle.done{color:#fff}
+      .steptoggle.done::before{background:var(--green);border-color:var(--green)}
+      .step-note{margin:2px 0 8px 54px}
       .step-note-view{display:block;width:100%;text-align:left;background:var(--surface2);border:0;border-radius:9px;padding:8px 11px;font-size:13.5px;color:var(--ink2);white-space:pre-wrap;word-break:break-word}
       .step-note-add{border:0;background:none;color:var(--accent);font-size:13px;font-weight:600;padding:2px 0;min-height:30px}
       .step-note-edit textarea{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:var(--surface);resize:vertical;min-height:60px}
@@ -394,7 +420,10 @@
       /* modal + forms */
       #modalwrap{position:fixed;inset:0;z-index:120;display:none;align-items:flex-start;justify-content:center;background:rgba(10,12,16,.45);padding:18px;overflow-y:auto}
       #modalwrap.on{display:flex}
-      .modal{background:var(--surface);border-radius:18px;max-width:560px;width:100%;padding:22px;margin:auto 0;box-shadow:var(--shadow)}
+      .modal{background:var(--surface);border-radius:18px;max-width:560px;width:100%;padding:22px;margin:auto 0;box-shadow:var(--shadow);max-height:calc(100dvh - 36px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--ink3) transparent}
+      .modal::-webkit-scrollbar{display:block;width:8px;height:8px}
+      .modal::-webkit-scrollbar-thumb{background:var(--ink3);border-radius:99px}
+      .modal::-webkit-scrollbar-track{background:transparent}
       .modal.wide{max-width:720px}
       .modal h3{margin:0 0 14px;font-size:19px}
       .modal h3 .micro{display:block;font-size:11.5px;letter-spacing:.08em;color:var(--ink3);font-weight:700;margin-bottom:3px}
@@ -425,9 +454,9 @@
       .rec-cell .chev.open{transform:rotate(90deg)}
       .rec-panel{border:1px solid var(--line);border-radius:12px;padding:13px;margin-top:8px}
       .swatches{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-      .swatch{width:34px;height:34px;border-radius:50%;border:2px solid transparent;padding:0;position:relative}
+      .swatch{width:40px;height:40px;border-radius:50%;border:2px solid transparent;padding:0;position:relative}
       .swatch.sel{border-color:var(--ink)}
-      .swatch.auto{background:var(--surface2);color:var(--ink2);font-size:10.5px;font-weight:700;width:auto;border-radius:99px;padding:0 12px;height:34px}
+      .swatch.auto{background:var(--surface2);color:var(--ink2);font-size:10.5px;font-weight:700;width:auto;border-radius:99px;padding:0 12px;height:40px}
       .healthy-row{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--line)}
       .healthy-row:last-child{border-bottom:0}
       .healthy-row .h-c{flex:1;min-width:0}
@@ -475,7 +504,7 @@
       #toasts{position:fixed;bottom:86px;left:50%;transform:translateX(-50%);z-index:150;display:flex;flex-direction:column;gap:8px;width:min(480px,calc(100vw - 24px))}
       .toast{background:var(--ink);color:var(--bg);border-radius:12px;padding:12px 16px;display:flex;gap:12px;align-items:center;box-shadow:var(--shadow);font-size:14px}
       .toast button{background:transparent;border:0;color:inherit;font-weight:700;text-decoration:underline;min-height:32px;text-align:left}
-      #remindbar{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:140;width:min(520px,calc(100vw - 24px));display:none}
+      #remindbar{width:min(520px,calc(100vw - 24px));display:none}
       #remindbar.on{display:block}
       .remind-card{background:var(--amber-soft);border:1px solid var(--amber);color:var(--ink);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
       .remind-card b{font-size:15.5px}
@@ -487,8 +516,8 @@
       @media (max-width:860px){
         aside{display:none}
         main{padding:0 14px 150px}
-        #toasts{bottom:150px}
-        #bottomnav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:80;background:var(--surface);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
+        #toasts{bottom:86px}
+        #bottomnav{display:grid;grid-template-columns:repeat(6,1fr);position:fixed;left:0;right:0;bottom:0;z-index:80;background:var(--surface);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
         #bottomnav button{border:0;background:transparent;color:var(--ink2);font-size:11px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 2px;border-radius:10px;min-height:52px;position:relative}
         #bottomnav button.active{color:var(--accent)}
         #bottomnav .bn-create{color:var(--ink2)}
@@ -526,14 +555,13 @@
     <section id="drawer" aria-label="Chi tiết việc"></section>
     <div id="modalwrap"></div>
     <div id="palette"></div>
-    <div id="remindbar"></div>
-    <div id="errbanner"></div>
+    <div id="topstack"><div id="remindbar"></div><div id="errbanner"></div></div>
     <div id="toasts"></div>
 
     <script>
     "use strict";
     /* =====================================================================
-       TASK MANAGER — Bản Public (tĩnh) · v2.13
+       TASK MANAGER — Bản Public (tĩnh) · v2.16
        - Auth: mã truy cập băm SHA-256 + salt, lưu localStorage (không lưu mã thô)
        - Dữ liệu + sao lưu + tuỳ chọn: toàn bộ trong localStorage của trình duyệt
        ===================================================================== */
@@ -542,7 +570,8 @@
     var LS_META = "cklp.meta.v1";
     var LS_BACKUPS = "cklp.backups.v1";
     var SS_UNLOCK = "cklp.unlocked";
-    var APP_VERSION = "2.13";
+    var LS_KBWIN = "cklp.kbwin.v1";
+    var APP_VERSION = "2.16";
     var APP_VERSION_DATE = "2026-11-23";
 
     /* ---------- tiện ích ---------- */
@@ -577,8 +606,21 @@
       return SERIES_PALETTE[h % SERIES_PALETTE.length];
     }
 
-    /* ---------- CHANGELOG (đúng nội dung bản chính, v1.0 → v2.13) ---------- */
+    /* ---------- CHANGELOG (đúng nội dung bản chính, v1.0 → v2.16) ---------- */
     var CHANGELOG = [
+      {version:"2.16", date:"2026-11-23", title:"Kanban chọn cửa sổ thời gian", changes:[
+        {type:"feature", text:"Kanban chọn cửa sổ: ±14 ngày, tuần này, tháng này"},
+        {type:"feature", text:"Khoảng ngày tuỳ chọn cho bảng Kanban"},
+        {type:"improvement", text:"Cửa sổ đã chọn được ghi nhớ cho lần mở sau"}]},
+      {version:"2.15", date:"2026-11-23", title:"Vùng chạm lớn hơn, cột Kanban đều cao", changes:[
+        {type:"fix", text:"Hộp thoại phiên bản cuộn trọn tới hàng cuối"},
+        {type:"improvement", text:"Thân hộp thoại cuộn có thanh cuộn mảnh"},
+        {type:"improvement", text:"Vùng bấm nhỏ nới lên tối thiểu 40px"},
+        {type:"improvement", text:"Cột Kanban cùng hàng cao bằng nhau"},
+        {type:"fix", text:"Banner lỗi và toast không còn đè nhau"}]},
+      {version:"2.14", date:"2026-11-23", title:"Kéo thả thẻ trên bảng Kanban", changes:[
+        {type:"feature", text:"Kéo thả thẻ giữa các cột trạng thái"},
+        {type:"improvement", text:"Tiêu đề thẻ dài rút gọn trong hai dòng"}]},
       {version:"2.13", date:"2026-11-23", title:"Sửa nút Lưu view ở Hộp Đến", changes:[{type:"fix", text:"Nút Lưu view gọn cùng hàng bộ lọc"}]},
       {version:"2.12", date:"2026-11-22", title:"Tạo trước theo ngày, thông báo & rung", changes:[
         {type:"feature", text:"Chuỗi chọn tạo trước 0–30 ngày"},
@@ -1647,42 +1689,209 @@
       $$("[data-day]").forEach(function(b){ b.addEventListener("click", function(){ UI.viewDate=b.getAttribute("data-day"); UI.view="today"; render(); }); });
     }
 
-    /* ================= MÀN: KANBAN (v2.2 — chuỗi chỉ 1 thẻ gốc) ================= */
+    /* ================= MÀN: KANBAN (v2.2 — chuỗi chỉ 1 thẻ gốc) =================
+       v2.14: kéo thả thẻ giữa các cột bằng pointer thống nhất (chuột + cảm ứng).
+       v2.15: cột cùng hàng cao bằng nhau (CSS), vùng thả là toàn bộ cột.
+       v2.16: bộ chọn cửa sổ thời gian; lựa chọn lưu ở khoá localStorage riêng. */
+
+    /* ---------- cửa sổ thời gian Kanban (v2.16) ---------- */
+    var KBWIN_OPTIONS=[{mode:"plusminus14",label:"±14 ngày"},{mode:"week",label:"Tuần này"},{mode:"month",label:"Tháng này"},{mode:"custom",label:"Tuỳ chọn…"}];
+    function kbWinLoad(){
+      try{ var p=JSON.parse(localStorage.getItem(LS_KBWIN)); if(p && KBWIN_OPTIONS.some(function(x){ return x.mode===p.mode; })) return {mode:p.mode, from:p.from||"", to:p.to||""}; }catch(e){}
+      return {mode:"plusminus14", from:"", to:""};
+    }
+    var kbSaved=kbWinLoad();            /* lựa chọn đã lưu — bảng lọc theo lựa chọn này khi bản nháp chưa hợp lệ */
+    var kbMode=kbSaved.mode;            /* bản nháp đang thao tác trên giao diện */
+    var kbFrom=kbSaved.from||todayStr();
+    var kbTo=kbSaved.to||todayStr();
+    var kbErr="";
+    function kbWinSave(pref){ kbSaved=pref; try{ localStorage.setItem(LS_KBWIN, JSON.stringify(pref)); }catch(e){} }
+    function kbWinRange(pref){
+      var t=todayStr();
+      if(pref.mode==="week"){ var mon=addDays(t,-((parseD(t).getDay()+6)%7)); return {from:mon, to:addDays(mon,6)}; }
+      if(pref.mode==="month"){ var last=new Date(+t.slice(0,4), +t.slice(5,7), 0).getDate(); return {from:t.slice(0,8)+"01", to:t.slice(0,8)+pad2(last)}; }
+      if(pref.mode==="custom" && pref.from && pref.to && pref.from<=pref.to) return {from:pref.from, to:pref.to};
+      return {from:addDays(t,-14), to:addDays(t,14)};
+    }
+    function kbEffectivePref(){
+      if(kbMode==="custom" && !(kbFrom && kbTo && kbFrom<=kbTo)) return kbSaved;
+      return kbMode==="custom"? {mode:"custom", from:kbFrom, to:kbTo} : {mode:kbMode, from:"", to:""};
+    }
+    function kbWinNote(pref, range){
+      if(pref.mode==="week") return "Việc một lần hiện trong tuần này ("+fmtShort(range.from)+" – "+fmtShort(range.to)+").";
+      if(pref.mode==="month") return "Việc một lần hiện trong tháng này ("+fmtShort(range.from)+" – "+fmtShort(range.to)+").";
+      if(pref.mode==="custom") return "Việc một lần hiện trong khoảng "+fmtShort(range.from)+" – "+fmtShort(range.to)+" đã chọn.";
+      return "Việc một lần hiện trong cửa sổ 14 ngày trước – 14 ngày tới.";
+    }
+    function kbChooseMode(mode){
+      kbMode=mode;
+      if(mode!=="custom"){ kbErr=""; kbWinSave({mode:mode, from:"", to:""}); render(); return; }
+      if(kbFrom && kbTo && kbFrom<=kbTo){ kbErr=""; kbWinSave({mode:"custom", from:kbFrom, to:kbTo}); }
+      else kbErr="Ngày bắt đầu phải trước hoặc bằng ngày kết thúc.";
+      render();
+    }
+    function kbSetErr(msg){
+      kbErr=msg;
+      var el=$("#kbwin-err");
+      if(el){ el.textContent=msg; el.style.display=msg? "block" : "none"; }
+    }
+    function kbChangeDate(which, value){
+      if(which==="from") kbFrom=value; else kbTo=value;
+      if(!kbFrom || !kbTo){ kbSetErr("Chọn đủ ngày bắt đầu và ngày kết thúc."); return; }
+      if(kbFrom>kbTo){ kbSetErr("Ngày bắt đầu phải trước hoặc bằng ngày kết thúc."); return; }
+      kbErr=""; kbWinSave({mode:"custom", from:kbFrom, to:kbTo}); render();
+    }
+    function kbWinHTML(){
+      return '<div class="kbwin"><div class="kbwin-opts" role="radiogroup" aria-label="Cửa sổ thời gian của bảng Kanban">'
+        + KBWIN_OPTIONS.map(function(op){ return '<button type="button" role="radio" aria-checked="'+(kbMode===op.mode)+'" data-kbmode="'+op.mode+'" class="'+(kbMode===op.mode?"active":"")+'">'+op.label+'</button>'; }).join("")
+        + '</div>'
+        + (kbMode==="custom"? '<div class="kbwin-custom"><label>Từ ngày<input type="date" id="kb-from" value="'+esc(kbFrom)+'" aria-label="Từ ngày" /></label><label>Đến ngày<input type="date" id="kb-to" value="'+esc(kbTo)+'" aria-label="Đến ngày" /></label></div>' : '')
+        + '<p class="kbwin-err" id="kbwin-err" role="alert" style="display:'+(kbErr?"block":"none")+'">'+esc(kbErr)+'</p></div>';
+    }
+
+    /* ---------- kéo thả thẻ Kanban (v2.14) ----------
+       Chuột: kéo quá 6px là nhấc thẻ. Cảm ứng: chạm-giữ ~200ms mới nhấc (vuốt
+       đi quá 12px trước mốc đó = cuộn trang, huỷ kéo). Thả vào cột trạng thái
+       nào thì gọi ĐÚNG setStatus như các nút chuyển cột; cột "Quá hạn" không
+       phải trạng thái nên thả vào đó (hoặc thả về cột gốc) là không có tác
+       dụng. Sau một cú kéo thật, cú click nối tiếp trên thẻ bị nuốt để không
+       mở nhầm ngăn chi tiết. */
+    var kbDrag=null;
+    var kbSuppressClick=false;
+    function kbEndDrag(){
+      if(!kbDrag) return;
+      var d=kbDrag; kbDrag=null;
+      window.clearTimeout(d.timer);
+      window.removeEventListener("pointermove", d.onMove);
+      window.removeEventListener("pointerup", d.onUp);
+      window.removeEventListener("pointercancel", d.onCancel);
+      document.removeEventListener("touchmove", d.blockTouch);
+      document.body.classList.remove("kdragging");
+      if(d.ghost && d.ghost.parentNode) d.ghost.parentNode.removeChild(d.ghost);
+      if(d.card) d.card.classList.remove("drag-source");
+      $$(".kcol.drop-target").forEach(function(c){ c.classList.remove("drop-target"); });
+    }
+    function kbCardPointerDown(e, card){
+      if(e.pointerType==="mouse" && e.button!==0) return;
+      if(e.target && e.target.closest && e.target.closest(".rowbtns")) return;
+      var occId=card.getAttribute("data-kdrag");
+      var o=occById(occId); if(!o) return;
+      kbEndDrag();
+      var rect=card.getBoundingClientRect();
+      var d={ occId:occId, fromStatus:o.status, title:o.title, pointerId:e.pointerId, pointerType:e.pointerType,
+        startX:e.clientX, startY:e.clientY, width:rect.width, active:false, overKey:null, timer:0, ghost:null, card:card };
+      d.blockTouch=function(ev){ if(d.active) ev.preventDefault(); };
+      d.activate=function(){
+        if(kbDrag!==d || d.active) return;
+        d.active=true;
+        document.body.classList.add("kdragging");
+        document.addEventListener("touchmove", d.blockTouch, {passive:false});
+        try{ if(navigator.vibrate) navigator.vibrate(10); }catch(err){}
+        card.classList.add("drag-source");
+        var g=document.createElement("div");
+        g.className="kdrag-ghost"; g.setAttribute("aria-hidden","true");
+        g.style.left=d.startX+"px"; g.style.top=d.startY+"px"; g.style.width=Math.min(d.width,300)+"px";
+        g.textContent=d.title;
+        document.body.appendChild(g); d.ghost=g;
+      };
+      d.onMove=function(ev){
+        if(kbDrag!==d || ev.pointerId!==d.pointerId) return;
+        if(!d.active){
+          var dx=ev.clientX-d.startX, dy=ev.clientY-d.startY;
+          var dist=Math.sqrt(dx*dx+dy*dy);
+          if(d.pointerType==="touch"){ if(dist>12) kbEndDrag(); }
+          else if(dist>6) d.activate();
+          return;
+        }
+        if(ev.clientY<84) window.scrollBy(0,-14);
+        else if(ev.clientY>window.innerHeight-84) window.scrollBy(0,14);
+        var el=document.elementFromPoint(ev.clientX, ev.clientY);
+        var col=(el && el.closest)? el.closest("[data-col-key]") : null;
+        d.overKey=col? col.getAttribute("data-col-key") : null;
+        $$(".kcol").forEach(function(c){ var k=c.getAttribute("data-col-key"); c.classList.toggle("drop-target", k===d.overKey && k!=="overdue"); });
+        if(d.ghost){ d.ghost.style.left=ev.clientX+"px"; d.ghost.style.top=ev.clientY+"px"; }
+      };
+      d.onUp=function(ev){
+        if(kbDrag!==d || ev.pointerId!==d.pointerId) return;
+        var wasActive=d.active, target=d.overKey, from=d.fromStatus, id=d.occId;
+        kbEndDrag();
+        if(wasActive){
+          kbSuppressClick=true;
+          window.setTimeout(function(){ kbSuppressClick=false; }, 350);
+          if(target && target!=="overdue" && target!==from){
+            var o2=occById(id); if(o2) setStatus(o2, target, true);
+          }
+        }
+      };
+      d.onCancel=function(){ if(kbDrag===d) kbEndDrag(); };
+      kbDrag=d;
+      window.addEventListener("pointermove", d.onMove);
+      window.addEventListener("pointerup", d.onUp);
+      window.addEventListener("pointercancel", d.onCancel);
+      if(e.pointerType==="touch") d.timer=window.setTimeout(d.activate, 200);
+    }
+
     function renderKanban(){
-      var t=todayStr(), lo=addDays(t,-14), hi=addDays(t,14);
+      kbEndDrag();
+      var pref=kbEffectivePref();
+      var range=kbWinRange(pref), lo=range.from, hi=range.to;
       var singles=liveOccs().filter(function(o){ return !o.seriesId && o.dueDate && o.dueDate>=lo && o.dueDate<=hi; });
       singles=applyFilter(singles);
       var cards=[];
       liveSeries().filter(function(s){ return s.kind!=="quit"; }).forEach(function(s){
         var sm=seriesSummary(s.id);
-        if(!sm.rep) return;
-        if(UI.filter.q || UI.filter.projectId || UI.filter.tagId || UI.filter.priority || UI.filter.status){ if(!occMatchesFilter(sm.rep, UI.filter)) return; }
-        cards.push({series:s, sm:sm, rep:sm.rep});
+        var rep=sm.rep, firstOcc=null, cardDate=null;
+        if(rep) cardDate=rep.dueDate;
+        else {
+          /* Chuỗi chưa bắt đầu: xét theo ngày lần làm đầu tiên (chưa có lần nào thì theo ngày bắt đầu của chuỗi). */
+          if(sm.occs.length){ firstOcc=sm.occs.slice().sort(function(a,b){ return a.dueDate<b.dueDate? -1:1; })[0]; cardDate=firstOcc.dueDate; }
+          else cardDate=s.start;
+          if(!cardDate) return;
+        }
+        if(cardDate<lo || cardDate>hi) return;
+        if(rep){
+          if(UI.filter.q || UI.filter.projectId || UI.filter.tagId || UI.filter.priority || UI.filter.status){ if(!occMatchesFilter(rep, UI.filter)) return; }
+        } else {
+          if(UI.filter.q && s.title.toLowerCase().indexOf(UI.filter.q.toLowerCase())<0) return;
+          if(UI.filter.projectId && s.projectId!==UI.filter.projectId) return;
+          if(UI.filter.status) return;
+        }
+        cards.push({series:s, sm:sm, rep:rep, firstOcc:firstOcc, cardDate:cardDate});
       });
       function colOf(o){ if(isOverdue(o)) return "overdue"; return o.status; }
       var cols=[{k:"overdue",t:"Quá hạn"},{k:"todo",t:"Chưa làm"},{k:"doing",t:"Đang làm"},{k:"done",t:"Hoàn thành"},{k:"skipped",t:"Bỏ qua"}];
       var items=[];
       singles.forEach(function(o){ items.push({kind:"single", occ:o, col:colOf(o)}); });
-      cards.forEach(function(c){ items.push({kind:"series", card:c, occ:c.rep, col:colOf(c.rep)}); });
-      var h='<div class="viewhead"><h2>Bảng Kanban</h2><span class="sub">Việc một lần trong 14 ngày trước – 14 ngày tới · chuỗi lặp chỉ hiện một thẻ gốc</span></div>'
+      cards.forEach(function(c){
+        if(c.rep) items.push({kind:"series", card:c, occ:c.rep, col:colOf(c.rep)});
+        else items.push({kind:"pending", card:c, occ:c.firstOcc, col:"todo"});
+      });
+      var h='<div class="viewhead"><h2>Bảng Kanban</h2><span class="sub">Chuỗi lặp chỉ hiện một thẻ gốc, xếp cột theo lần làm đại diện</span></div>'
+        + kbWinHTML()
         + filterbarHTML()
-        + '<p class="hint" style="margin-bottom:12px">Thẻ chuỗi xếp cột theo lần làm hôm nay hoặc gần nhất. Dùng nút chuyển cột trên mỗi thẻ để đổi trạng thái nhanh.</p>'
+        + '<p class="hint" style="margin-bottom:12px">'+esc(kbWinNote(pref, range))+' Kéo thẻ sang cột khác (trên điện thoại: chạm-giữ thẻ rồi kéo) hoặc dùng nút chuyển cột trên mỗi thẻ để đổi trạng thái.</p>'
         + '<div class="kanban">'
         + cols.map(function(c){
             var its=items.filter(function(it){ return it.col===c.k; });
-            return '<div class="kcol col-'+c.k+'"><h3>'+c.t+'<span>'+its.length+'</span></h3>'
+            return '<div class="kcol col-'+c.k+'" data-col-key="'+c.k+'"><h3>'+c.t+'<span>'+its.length+'</span></h3>'
               + (its.length? its.map(function(it){
                   var o=it.occ;
+                  if(it.kind==="pending"){
+                    var ps=it.card.series;
+                    return '<div class="kcard"><div class="t"'+(o? ' data-kopen="'+o.id+'"' : '')+'><span class="sdot" style="background:'+seriesColor(ps)+'"></span><span class="kt">'+esc(ps.title)+'</span></div>'
+                      + '<div class="m"><span class="repeat-badge">'+ICONS.repeat+' Lặp lại · '+esc(rruleLabel(ps.rrule))+'</span></div>'
+                      + '<div class="m">Chưa bắt đầu · bắt đầu '+esc(fmtShort(it.card.cardDate))+'</div></div>';
+                  }
                   var proj=o.projectId? projectById(o.projectId): null;
                   var moveBtns=["todo","doing","done","skipped"].filter(function(st){ return st!==o.status; }).map(function(st){ return '<button class="btn small" data-kmove="'+o.id+'" data-st="'+st+'" type="button">→ '+STATUS_LABEL[st]+'</button>'; }).join("");
                   if(it.kind==="series"){
                     var s=it.card.series, sm=it.card.sm;
-                    return '<div class="kcard"><div class="t" data-kopen="'+o.id+'"><span class="sdot" style="background:'+seriesColor(s)+'"></span><span>'+esc(s.title)+'</span></div>'
+                    return '<div class="kcard kdraggable" data-kdrag="'+o.id+'"><div class="t" data-kopen="'+o.id+'"><span class="sdot" style="background:'+seriesColor(s)+'"></span><span class="kt">'+esc(s.title)+'</span></div>'
                       + '<div class="m"><span class="repeat-badge">'+ICONS.repeat+' Lặp lại · '+esc(rruleLabel(s.rrule))+'</span></div>'
                       + '<div class="m">'+(isOverdue(o)? '<span style="color:var(--red);font-weight:600">Có lần quá hạn · </span>' : '')+(sm.nextDate? 'Lần tới: '+fmtShort(sm.nextDate)+' · ' : '')+sm.done+'/'+sm.total+' lần đã xong</div>'
                       + '<div class="rowbtns">'+moveBtns+'</div></div>';
                   }
-                  return '<div class="kcard"><div class="t" data-kopen="'+o.id+'"><span>'+esc(o.title)+'</span></div>'
+                  return '<div class="kcard kdraggable" data-kdrag="'+o.id+'"><div class="t" data-kopen="'+o.id+'"><span class="kt">'+esc(o.title)+'</span></div>'
                     + '<div class="m">'+(isOverdue(o)? '<span style="color:var(--red);font-weight:600">Quá hạn · </span>' : '')+esc(fmtShort(o.dueDate))+(o.dueTime?" · "+esc(o.dueTime):"")+(proj? " · "+esc(proj.name) : "")+(o.status==="doing"?" · "+(o.progress||0)+"%":"")+'</div>'
                     + '<div class="rowbtns">'+moveBtns+'</div></div>';
                 }).join("") : '<p class="hint">Trống</p>')
@@ -1690,7 +1899,11 @@
           }).join("") + '</div>';
       $("#main").innerHTML=topbarHTML()+h; wireTopbar(); wireFilterbar();
       $$("[data-kmove]").forEach(function(b){ b.addEventListener("click", function(){ var o=occById(b.getAttribute("data-kmove")); if(o) setStatus(o, b.getAttribute("data-st"), true); }); });
-      $$("[data-kopen]").forEach(function(b){ b.addEventListener("click", function(){ openDrawer(b.getAttribute("data-kopen")); }); });
+      $$("[data-kopen]").forEach(function(b){ b.addEventListener("click", function(){ if(kbSuppressClick) return; openDrawer(b.getAttribute("data-kopen")); }); });
+      $$(".kcard[data-kdrag]").forEach(function(card){ card.addEventListener("pointerdown", function(e){ kbCardPointerDown(e, card); }); });
+      $$("[data-kbmode]").forEach(function(b){ b.addEventListener("click", function(){ kbChooseMode(b.getAttribute("data-kbmode")); }); });
+      var kbF=$("#kb-from"); if(kbF) kbF.addEventListener("change", function(){ kbChangeDate("from", kbF.value); });
+      var kbT=$("#kb-to"); if(kbT) kbT.addEventListener("change", function(){ kbChangeDate("to", kbT.value); });
     }
 </script>
 
@@ -1727,7 +1940,7 @@
       h+= active.length? '<div class="cards">'+active.map(projCard).join("")+'</div>' : emptyHTML("Chưa có dự án nào","Bấm “+ Tạo dự án” để nhóm các việc liên quan.");
       if(archived.length){ h+='<div class="group-title">Đã lưu trữ <span class="cnt">'+archived.length+'</span></div><div class="cards">'+archived.map(projCard).join("")+'</div>'; }
       h+='<div class="group-title">Tag <span class="cnt">'+state.tags.length+'</span></div>';
-      h+= state.tags.length? '<div style="display:flex;gap:8px;flex-wrap:wrap">'+state.tags.map(function(t){ var n=liveOccs().filter(function(o){return (o.tags||[]).indexOf(t.id)>=0;}).length + state.notes.filter(function(x){return !x.deletedAt && (x.tags||[]).indexOf(t.id)>=0;}).length; return '<span class="chip tagchip" style="min-height:36px;padding:6px 12px">#'+esc(t.name)+' · '+n+' <button class="iconbtn" style="width:28px;height:28px" data-tdel="'+t.id+'" title="Xoá tag">✕</button></span>'; }).join("")+'</div>' : '<p class="hint">Chưa có tag nào.</p>';
+      h+= state.tags.length? '<div style="display:flex;gap:8px;flex-wrap:wrap">'+state.tags.map(function(t){ var n=liveOccs().filter(function(o){return (o.tags||[]).indexOf(t.id)>=0;}).length + state.notes.filter(function(x){return !x.deletedAt && (x.tags||[]).indexOf(t.id)>=0;}).length; return '<span class="chip tagchip" style="min-height:36px;padding:6px 12px">#'+esc(t.name)+' · '+n+' <button class="iconbtn" style="width:40px;height:40px" data-tdel="'+t.id+'" title="Xoá tag">✕</button></span>'; }).join("")+'</div>' : '<p class="hint">Chưa có tag nào.</p>';
       h+='<div class="group-title">Mẫu việc <span class="cnt">'+state.templates.length+'</span></div>';
       h+= state.templates.length? '<div class="cards">'+state.templates.map(function(t){
           var isDel = confirmTplDel===t.id;
@@ -2926,14 +3139,14 @@
             } else {
               noteBox='<div class="step-note"><button class="step-note-add" data-stepnote-edit="'+st.id+'" type="button">Thêm ghi chú</button></div>';
             }
-            return '<div class="step-row"><button class="steptoggle'+(st.done?" done":"")+'" data-step="'+st.id+'" aria-label="Tick bước">'+ICONS.check+'</button><span class="st'+(st.done?" done":"")+'">'+esc(st.title)+'</span><button class="iconbtn" style="width:32px;height:32px" data-stepdel="'+st.id+'" aria-label="Xoá bước">'+ICONS.x+'</button></div>'+noteBox;
+            return '<div class="step-row"><button class="steptoggle'+(st.done?" done":"")+'" data-step="'+st.id+'" aria-label="Tick bước">'+ICONS.check+'</button><span class="st'+(st.done?" done":"")+'">'+esc(st.title)+'</span><button class="iconbtn" style="width:40px;height:40px" data-stepdel="'+st.id+'" aria-label="Xoá bước">'+ICONS.x+'</button></div>'+noteBox;
           }).join("") : '<p class="hint">Chưa có bước nào.</p>')
         + '</div>'
         + '<form id="dr-addstep" class="step-add"><input id="dr-stepin" type="text" placeholder="Thêm bước…" aria-label="Tên bước mới" />'
         + (s? '<span class="scope-seg" role="group" aria-label="Phạm vi thêm bước"><button type="button" data-stepscope="this" class="'+(drawerState.stepScope==="this"?"sel":"")+'">Cho lần này</button><button type="button" data-stepscope="template" class="'+(drawerState.stepScope==="template"?"sel":"")+'">Mẫu của chuỗi</button></span>' : '')
         + '<button class="btn" type="submit">Thêm</button></form>'
         + (s? collapsibleHTML("dr-tplsteps", "Bước mẫu của chuỗi", (s.steps||[]).length+" bước mẫu · áp dụng cho các lần sinh sau",
-            ((s.steps||[]).length? s.steps.map(function(t,ix){ return '<div class="step-row"><span class="st">'+esc(t)+'</span><button class="iconbtn" style="width:32px;height:32px" data-tplstepdel="'+ix+'" aria-label="Xoá bước mẫu">'+ICONS.x+'</button></div>'; }).join("") : '<p class="hint">Chưa có bước mẫu.</p>')
+            ((s.steps||[]).length? s.steps.map(function(t,ix){ return '<div class="step-row"><span class="st">'+esc(t)+'</span><button class="iconbtn" style="width:40px;height:40px" data-tplstepdel="'+ix+'" aria-label="Xoá bước mẫu">'+ICONS.x+'</button></div>'; }).join("") : '<p class="hint">Chưa có bước mẫu.</p>')
             + '<p class="hint">Thêm bước mẫu bằng ô “Thêm bước” ở trên, chọn phạm vi “Mẫu của chuỗi”.</p>', false) : '')
         + '</div>'
         + (seriesNotes.length? '<div class="dsec"><h4>Tài liệu quy trình · Ghi chú gắn chuỗi</h4><p class="hint" style="margin-top:0">Các ghi chú này thuộc về cả chuỗi việc — mở lần làm nào của chuỗi cũng thấy, khác với ghi chú riêng của từng lần làm ở dưới.</p>'
